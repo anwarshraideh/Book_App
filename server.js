@@ -43,6 +43,10 @@ server.post('/searches',(req,res)=>{
             res.render('pages/searches/show', { booksData: bookArray });
         })
 
+        .catch(error => {
+            res.render('pages/error',error);
+          });
+
  })
 
 
