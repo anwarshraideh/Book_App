@@ -4,25 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles/reset.css">
+    <link rel="stylesheet" href="/public/styles/base.css">
+    <link rel="stylesheet" href="/public/styles/modules.css">
+    <link rel="stylesheet" href="/public/styles/layouts.css">
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <nav>
+            <h1>Best Books!</h1>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1 class="Ftitle">Search By Title or Author</h1>
+
+
     <form action="/searches" method="POST">
         <fieldset>
             
-            <label for="seachQuery">Name</label>
+            
             <input type="text" name="seachQuery" id="seachQuery">
 
-            <input type="radio" name="seachBy" id="Author" value="Author">
-            <label for="Author">Author</label>
-            
-            <input type="radio" name="searchBy" id="Title" value="Title">
-            <label for="Title">Title</label>
-            
+            <br>
+
+           <div class="radio">
+            <input  type="radio" name="seachBy" id="Author" value="Author">
+            <label  for="Author">Author</label>
+           </div>
+
+            <br>
+
+            <div class="radio">
+            <input  type="radio" name="searchBy" id="Title" value="Title">
+            <label  for="Title">Title</label>
+            </div>
+            <br>
             <button>Search</button>
 
         </fieldset>
     </form>
-    
+</main>
 </body>
 </html>

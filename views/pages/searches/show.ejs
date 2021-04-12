@@ -4,25 +4,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/styles/reset.css">
+    <link rel="stylesheet" href="/public/styles/base.css">
+    <link rel="stylesheet" href="/public/styles/modules.css">
+    <link rel="stylesheet" href="/public/styles/layouts.css">
+    
     <title>Document</title>
 </head>
 <body>
+
+    <header>
+
+        <nav>
+            <h1>Best Books!</h1>
+        </nav>
+
+    </header>
+  
+
+    <main>
+    <h1 class="Ftitle">Search Results</h1>
+
+    <section id='books'>
     <% booksData.forEach(element=>{%>
+        <div class="bookDiv">
         <img src="<%= element.img%>" alt="">
 
         <h1>
             <%= element.title%>
         </h1>
 
-        <h3>
+        <h3 class="Author">
             <%= element.author%>
         </h3>
 
         <p>
             <%= element.description%>
         </p>
-
+     
+     </div>
     <%});%>
+</section>
+</main>
     
 </body>
 </html>
