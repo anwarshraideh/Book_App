@@ -17,10 +17,10 @@ server.get('/hello',(req,res)=>{
 })
 
 
+server.get('/searches/new',(req,res)=>{
 
-
-
-
+    res.render('pages/searches/new')
+})
 
 
 
