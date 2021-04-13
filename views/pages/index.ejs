@@ -1,16 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/styles/reset.css">
-    <link rel="stylesheet" href="/public/styles/base.css">
-    <link rel="stylesheet" href="/public/styles/modules.css">
-    <link rel="stylesheet" href="/public/styles/layouts.css">
-    <title>Document</title>
-</head>
+    <%- include('../layout/head.ejs') %>
 <body>
-    <h4>Hello</h4>
+
+    <%- include('../layout/header.ejs') %>
+
+
+    <main>
+    <h1>
+        <%= bkList.length%> Saved Books
+    </h1>
+
+    <section id='book'>
+
+    <% bkList.forEach(element=> { %>
+        <div class="bookDiv">
+
+            <img src='<%= element.img %>' alt="">
+            <h2>
+                <%= element.title %>
+            </h2>
+            <p>
+                <%= element.author %>
+            </p>
+            <button class="details-button" type="submit"><a href="/books/<%= element.id %>">View Details</a></button>
+        </div>
+        <% }) %>
+
+        </section>
+    </main>
+
+
 </body>
 </html>
