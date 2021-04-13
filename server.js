@@ -31,16 +31,15 @@ server.get('/searches/new',(req,res)=>{
 
 server.post('/searches',(req,res)=>{ 
   
-    let query = req.body.search;
-    let search_by = req.body.searchBy;
-
-     let url = `https://www.googleapis.com/books/v1/volumes?q=${query}+inauthor`;
-    // `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}`
+     let search_query = req.body.seachQuery;
+     let search_by = req.body.searchBy
+   
+     let url = `https://www.googleapis.com/books/v1/volumes?q=+inauthor:${search_query}`;
     
     if (search_by === 'title'){
 
-       url = `https://www.googleapis.com/books/v1/volumes?q=${query}+intitle`;
-        //`https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`
+       url = `https://www.googleapis.com/books/v1/volumes?q=+intitle:${search_query}`;
+       
     }
     
     
