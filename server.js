@@ -12,6 +12,10 @@ const superagent = require('superagent');
 
 const PORT = process.env.PORT || 3000;
 
+server.get('/',(req,res)=>{
+
+    res.render('pages/index');
+})
 
 
 server.get('/hello',(req,res)=>{
@@ -30,12 +34,15 @@ server.post('/searches',(req,res)=>{
     let query = req.body.search;
     let search_by = req.body.searchBy;
 
-    let url = `https://www.googleapis.com/books/v1/volumes?q=${query}+inauthor`;
+     let url = `https://www.googleapis.com/books/v1/volumes?q=${query}+inauthor`;
+    // `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}`
     
     if (search_by === 'title'){
 
-        url = `https://www.googleapis.com/books/v1/volumes?q=${query}+intitle`;
+       url = `https://www.googleapis.com/books/v1/volumes?q=${query}+intitle`;
+        //`https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`
     }
+    
     
     superagent.get(url)
         .then(data => {
@@ -44,7 +51,7 @@ server.post('/searches',(req,res)=>{
         })
 
         .catch(error => {
-            res.render('pages/error',error);
+            res.render('pages/error', { errors: error });
           });
 
  })
@@ -52,10 +59,10 @@ server.post('/searches',(req,res)=>{
 
 
 function Book(Bookdata) {
-    this.title = Bookdata.volumeInfo.title ;
-    this.author = Bookdata.volumeInfo.authors;
-    this.description = Bookdata.volumeInfo.description ;
-    this.img = Bookdata.volumeInfo.imageLinks.thumbnail || 'https://i.imgur.com/J5LVHEL.jpg';
+    this.title = Bookdata.volumeInfo.title || 'Title unavilable' ;
+    this.author = Bookdata.volumeInfo.authors || `Author unavilable`;
+    this.description = Bookdata.volumeInfo.description || `description unavilable`;
+    this.img = (Bookdata.volumeInfo.imageLinks) ? Bookdata.volumeInfo.imageLinks.thumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
 }
 
 
