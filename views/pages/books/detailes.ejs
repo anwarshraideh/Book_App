@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../../layout/head.ejs') %>
+
+    <body>
+
+        <%- include('../../layout/header.ejs') %>
+
+            <main>
+
+                <h1>Result</h1>
+                <section id='bookcard'>
+                    <div class="bookDiv">
+                        <img class="bookImg" src="<%= book.img%>" alt="">
+                        <h2 class="Tilte">
+                            <%= book.title%>
+                        </h2>
+                        <p class="Author">
+                            <%= book.author%>
+                        </p>
+                        <p class="description">
+                            <%= book.description%>
+                        </p>
+                        <p>
+                            ISBN: <%= book.isbn %>
+                        </p>
+                    </div>
+                </section>
+
+            </main>
+            
+    </body>
+    </html>
+    
