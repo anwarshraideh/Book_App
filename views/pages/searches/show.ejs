@@ -28,8 +28,19 @@
             <%= element.description%>
         </p>
      
+        <form action="/books" method="POST">
+            <input type="hidden" name="title" value="<%= booksData.title %>" reqiuerd />
+            <input type="hidden" name="author" value="<%= booksData.author %>" reqiuerd />
+            <input type="hidden" name="isbn" value="<%= booksData.isbn %>" reqiuerd />
+            <input type="hidden" name="img" value="<%= booksData.img %>" reqiuerd />
+            <input type="hidden" name="description" value="<%= booksData.description %>" reqiuerd />
+            
+            <button type="submit">Add to the Shelf</button>
+          </form>
      </div>
     <%});%>
+
+    
 </section>
 </main>
     
