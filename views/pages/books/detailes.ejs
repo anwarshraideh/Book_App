@@ -10,7 +10,7 @@
             <main>
 
                 <h1>Result</h1>
-                <section id='bookcard'>
+                <section class='details'id='bookcard'>
                     <div class="bookDiv">
                         <img class="bookImg" src="<%= book.img%>" alt="">
                         <h2 class="Tilte">
@@ -26,9 +26,13 @@
                             ISBN: <%= book.isbn %>
                         </p>
                     </div>
+                    <%- include('edit') %>
                 </section>
-
+                
             </main>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="/app.js"></script>
             
     </body>
     </html>

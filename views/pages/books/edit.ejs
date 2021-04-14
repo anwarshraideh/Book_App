@@ -1,0 +1,17 @@
+<button id='updateBtn'>Update</button>
+<section id="updateform" >
+    <form action="/updateBook/<%= book.id %>?_method=PUT" method="POST"><br>
+      <input id="img" type="text" name="img" value="<%= book.img %>"><br>
+      <input type="text" name="title" name="searchBy" value="<%=book.title%>"><br>
+      <input type="text" name="author" value="<%=book.author%>"><br>
+      <input type="text" name="isbn" value="<%=book.isbn%>"><br>
+      <textarea id="description" type="text" name="description" rows="10" cols="52">
+        <%= book.description %>
+        </textarea>
+      <button type="submit">Update Book</button>
+    </form>
+  </section>
+
+  <form action="/deleteBook/<%= book.id %>?_method=DELETE" method='POST'>
+    <button type="submit">Delete Book</button>
+ </form>
