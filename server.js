@@ -94,8 +94,8 @@ server.get('/books/:id', (req, res) => {
 
 server.post('/books', (req, res) => {
 
-    let SQL = `INSERT INTO BookList (title, author,isbn,img , description )
-    VALUES($1,$2,$3,$4,$5) RETURNING id;`;
+    let SQL = `INSERT INTO BookList (title, author, isbn , img , description )
+    VALUES($1,$2,$3,$4,$5) RETURNING *;`;
     let values = [req.body.title, req.body.author, req.body.isbn, req.body.img , req.body.description];
     client.query(SQL, values)
         .then(result => {
