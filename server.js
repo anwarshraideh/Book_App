@@ -5,17 +5,18 @@ const express = require('express');
 const server = express();
 const superagent = require('superagent');
 const pg = require('pg');
+const methodOverride = require('method-override');
 
 
 server.set('view engine', 'ejs');
 server.use('/public', express.static('./public'));
 server.use(express.urlencoded({ extended: true }));
-
+server.use(methodOverride('_method'));
 
 
 const PORT = process.env.PORT || 3000;
-const client = new pg.Client(process.env.DATABASE_URL);
-// const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+//const client = new pg.Client(process.env.DATABASE_URL);
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 
 
 
@@ -87,10 +88,40 @@ server.get('/books/:id', (req, res) => {
             res.render('pages/books/show', { book: result.rows[0] })
         })
         .catch((error) => {
-            errorHandler(`error!`, error);
+            console.log(`error!`, error);
         })
 
 })
+
+server.put('/updateBook/:id', (req, res) => {
+
+    let SQL = `UPDATE BookList SET title=$1, author=$2, isbn=$3, img=$4 , description=$5 WHERE id=$6;`;
+    let values = [req.body.title, req.body.author, req.body.isbn, req.body.img, req.body.description,req.params.id];
+    client.query(SQL, values)
+        .then(() => {
+            res.redirect(`/books/${req.params.id}`);
+        })
+        .catch(() => {
+            console.log(`Sorry, error editing this book!`);
+        })
+
+})
+
+server.delete('/deleteBook/:id', (req, res) => {
+
+    let SQL = `DELETE FROM BookList WHERE id=$1;`;
+    let value = [req.params.id];
+    client.query(SQL, value)
+        .then(() => {
+            res.redirect(`/`);
+        })
+        .catch(() => {
+            console.log(`Sorry, error deleting this book!`);
+        })
+
+})
+
+
 
 server.post('/books', (req, res) => {
 
